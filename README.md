@@ -12,6 +12,8 @@ Once the timer hits 0, you will be asked what exercise you did and how many reps
  
 Your efforts will be saved to a CSV file in the same directory as this script, so your pathway to swole is recorded.
 
+![Demo](https://github.com/not-matt/PushUpClock/blob/master/demo.gif)
+
 ## Usage       
 Set this script to run as often as you want using Windows task manager. I have it set to run every hour while I'm logged on.
 
