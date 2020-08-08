@@ -8,7 +8,7 @@ During this time you cannot exit or switch to another program.
 
 If you're looking for a way to pass this time, you can do some push ups, sit ups, whatever you fancy.
 
-Once the timer hits 0, you will be asked what exercise you did. You can just hit <ENTER> to use the default values (20 push ups). Feel free to change these defaults.
+Once the timer hits 0, you will be asked what exercise you did and how many reps. You can just hit \<ENTER\> to use the default values (20 push ups). Feel free to change these defaults.
  
 Your efforts will be saved to a CSV file in the same directory as this script, so your pathway to swole is recorded.
 
