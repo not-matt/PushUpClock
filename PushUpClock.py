@@ -38,7 +38,8 @@ TODO:         SHOW PROGRESS,     after exercise, give option to display exercise
 # DEFAULT SETTINGS (20 Push Ups)
 #
 REPS_TARGET = 10                                         # Default number of reps to aim for. 
-EXERCISES = ["Push ups", "Pull ups", "Sit ups"]          # Default exercise is first item in this list.
+EXERCISES = ["Push ups", "Pull ups", "Sit ups",          # Default exercise is first item in this list.
+             "Shoulder Stabilisers", "Hangs"]
 HOLD_TIME = 15                                           # Number of seconds for exercise countdown. Switching to other programs, or exiting this program will be blocked during this time.
 HOLD_MESSAGE = f"Drop and give me {REPS_TARGET}!"        # Message displayed during countdown to get you off your ass.
 LOG_FILE = "log.csv"                                     # Name of log file. Must be in same directory as this program. Will be created if it doesnt exist.
