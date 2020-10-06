@@ -37,16 +37,14 @@ TODO:         SHOW PROGRESS,     after exercise, give option to display exercise
 ###########################
 # DEFAULT SETTINGS (20 Push Ups)
 #
-REPS_TARGET = 20                                         # Default number of reps to aim for. 
+REPS_TARGET = 10                                         # Default number of reps to aim for. 
 EXERCISES = ["Push ups", "Pull ups", "Sit ups"]          # Default exercise is first item in this list.
-HOLD_TIME = 10                                           # Number of seconds for exercise countdown. Switching to other programs, or exiting this program will be blocked during this time.
+HOLD_TIME = 15                                           # Number of seconds for exercise countdown. Switching to other programs, or exiting this program will be blocked during this time.
 HOLD_MESSAGE = f"Drop and give me {REPS_TARGET}!"        # Message displayed during countdown to get you off your ass.
 LOG_FILE = "log.csv"                                     # Name of log file. Must be in same directory as this program. Will be created if it doesnt exist.
+ACTIVE_HOURS = ("09:00", "21:00")                        # Active hours (format "HOUR:MINUTE"). The program will only run between these hours. 
 #
 ###########################
-
-
-
 
 
 class CountdownWindow(tk.Tk):
@@ -160,6 +158,14 @@ def displayExerciseData(log_file_path):
             print(row)
 
 def main():
+    # Only run if between active hours
+    start_hour = datetime.datetime.strptime(ACTIVE_HOURS[0], "%H:%M").time()
+    end_hour = datetime.datetime.strptime(ACTIVE_HOURS[1], "%H:%M").time()
+    time_now = datetime.datetime.now().time()
+
+    if not start_hour < time_now < end_hour:
+        return 0
+
     # run countdown window
     cw = CountdownWindow()
 
@@ -170,13 +176,14 @@ def main():
     # showprogress = getreps.showprogress.get()
 
     # save data to log file
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    log_file_path = os.path.join(dir_path, LOG_FILE)
-    with open(log_file_path, "a", newline="") as log_file:
-        log_writer = csv.writer(log_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        now = datetime.datetime.now()
-        date_time = now.strftime("%m/%d/%Y %H:%M:%S")
-        log_writer.writerow([date_time, exercise, reps])
+    if reps:
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        log_file_path = os.path.join(dir_path, LOG_FILE)
+        with open(log_file_path, "a", newline="") as log_file:
+            log_writer = csv.writer(log_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            now = datetime.datetime.now()
+            date_time = now.strftime("%m/%d/%Y %H:%M:%S")
+            log_writer.writerow([date_time, exercise, reps])
 
     # # If the user asked, then display the saved data
     # if showprogress:
