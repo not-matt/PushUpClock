@@ -6,10 +6,10 @@ When the program executes, it displays a fullscreen window that blocks interacti
 
 During this time you cannot exit or switch to another program. 
 
-If you're looking for a way to pass this time, you can do some push ups, sit ups, whatever you fancy.
+If you're looking for a way to pass this time, you could do some push ups, sit ups, stand up and look around, whatever you fancy.
 
-Once the timer hits 0, you will be asked what exercise you did and how many reps. You can just hit \<ENTER\> to use the default values (20 push ups). Feel free to change these defaults.
- 
+Once the timer hits 0, you will be asked if you did the prompted exercise and reps. You can adjust the values if you did a different exercise, or different reps. Feel free to change the exercises below. 
+
 Your efforts will be saved to a CSV file in the same directory as this script, so your pathway to swole is recorded.
 
 ![Demo](https://github.com/not-matt/PushUpClock/blob/master/demo.gif)
@@ -20,7 +20,5 @@ Set this script to run as often as you want using Windows task manager. I have i
 
 ## Todo
 SHOW PROGRESS,     after exercise, give option to display exercise data using matplotlib
-
 REPS SCALING,      give a "too hard" or "too easy" option to adjust the number of reps to do next time.
 
-EXERCISE CYCLING,  prompt the user to do a different exercise each time.
