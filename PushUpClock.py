@@ -3,6 +3,7 @@ import tkinter.font as tkFont
 import tkinter.simpledialog as simpledialog
 import tkinter.messagebox as messagebox
 import datetime
+import random
 import csv
 import sys
 import os
@@ -24,32 +25,32 @@ USAGE:        Set this script to run as often as you want using Windows task man
 WHAT IT DOES: When the program executes, it displays a fullscreen window that blocks interaction with any other programs for a set amount of time.
               During this time you cannot exit or switch to another program. 
               If you're looking for a way to pass this time, you can do some push ups, sit ups, whatever you fancy.
-              Once the timer hits 0, you will be asked what exercise you did. You can just hit <ENTER> to use the default values (20 push ups). Feel free to change these defaults (below).
+              Once the timer hits 0, you will be asked what exercise you did. You can just hit <ENTER> to use the default values (10 push ups). Feel free to change these defaults (below).
               Your efforts will be saved to a CSV file in the same directory as this script, so your pathway to swole is recorded.
 
 TODO:         SHOW PROGRESS,     after exercise, give option to display exercise data using matplotlib
               REPS SCALING,      give a "too hard" or "too easy" option to adjust the number of reps to do next time.
-              EXERCISE CYCLING,  prompt the user to do a different exercise each time.
 """
 
 
 
 ###########################
-# DEFAULT SETTINGS (20 Push Ups)
+# SETTINGS 
 #
-REPS_TARGET = 10                                         # Default number of reps to aim for. 
-EXERCISES = ["Push ups", "Pull ups", "Sit ups",          # Default exercise is first item in this list.
-             "Shoulder Stabilisers", "Hangs"]
+EXERCISES = {"Push ups": 10,                             # Exercise will be randomly chosen from these options
+             "Clean and Press": 8,                       # Format: {exercise: reps}
+             "Sit ups": 20,   
+             "Goblet Squats": 20}
 HOLD_TIME = 15                                           # Number of seconds for exercise countdown. Switching to other programs, or exiting this program will be blocked during this time.
-HOLD_MESSAGE = f"Drop and give me {REPS_TARGET}!"        # Message displayed during countdown to get you off your ass.
+HOLD_MESSAGE = f"Drop and give me =REPS= =EXERCISE=!"    # Message displayed during countdown to get you off your ass. =REPS= and =EXERCISE= will be replaced appropriately
 LOG_FILE = "log.csv"                                     # Name of log file. Must be in same directory as this program. Will be created if it doesnt exist.
-ACTIVE_HOURS = ("09:00", "21:00")                        # Active hours (format "HOUR:MINUTE"). The program will only run between these hours. 
+ACTIVE_HOURS = ("09:00", "22:00")                        # Active hours (format "HOUR:MINUTE"). The program will only run between these hours. 
 #
 ###########################
 
 
 class CountdownWindow(tk.Tk):
-    def __init__(self):
+    def __init__(self, message):
         super().__init__()
         #window = tk.Tk()
         self.attributes("-topmost", True ,'-fullscreen', True)
@@ -58,7 +59,7 @@ class CountdownWindow(tk.Tk):
         self.wm_title("Pushups")
 
         fontStyle = tkFont.Font(family="Lucida Grande", size=50)
-        self.message_label = tk.Label(self, font=fontStyle, text=HOLD_MESSAGE)
+        self.message_label = tk.Label(self, font=fontStyle, text=message)
         self.message_label.pack(fill=tk.BOTH, expand=True, anchor="center")
 
         fontStyle = tkFont.Font(family="Lucida Grande", size=30)
@@ -93,7 +94,7 @@ class CountdownWindow(tk.Tk):
             self.destroy()
 
 class GetRepsWindow(tk.Tk):
-    def __init__(self):
+    def __init__(self, exercise, reps):
         super().__init__()
         self.wm_title("Record your effort")
 
@@ -105,8 +106,8 @@ class GetRepsWindow(tk.Tk):
         self.protocol("WM_DELETE_WINDOW", self.on_exit)
         self.bind('<Return>', self.get_number)
 
-        self.reps = tk.IntVar(value=REPS_TARGET)
-        self.exercise = tk.StringVar(value=EXERCISES[0])
+        self.reps = tk.IntVar(value=reps)
+        self.exercise = tk.StringVar(value=exercise)
         # self.showprogress = tk.IntVar(value=0)
 
         self.formframe = tk.Frame(padx=10, pady=10)
@@ -115,7 +116,7 @@ class GetRepsWindow(tk.Tk):
         self.repslabel = tk.Label(self.formframe, text="How many reps did you do?")
         self.repsinput = tk.Spinbox(self.formframe, from_=0, to=1000, textvariable=self.reps)
         self.exerciselabel = tk.Label(self.formframe, text="What exercise did you do?")
-        self.exerciseinput = tk.OptionMenu(self.formframe, self.exercise, *EXERCISES)
+        self.exerciseinput = tk.OptionMenu(self.formframe, self.exercise, *EXERCISES.keys())
         # self.showprogressinput = tk.Checkbutton(self.buttonframe, text='Show my progress', variable=self.showprogress)
         self.cancelbutton = tk.Button(self.buttonframe, text="I didn't do it", command=self.on_exit, width=10)
         self.okbutton = tk.Button(self.buttonframe, text="I did it", command=self.get_number, width=10)
@@ -167,11 +168,14 @@ def main():
     if not start_hour < time_now < end_hour:
         return 0
 
+    exercise, reps = random.choice(list(EXERCISES.items()))
+    message = HOLD_MESSAGE.replace("=REPS=", str(reps)).replace("=EXERCISE=", exercise)
+
     # run countdown window
-    cw = CountdownWindow()
+    cw = CountdownWindow(message)
 
     # get reps and exercise from user
-    getreps = GetRepsWindow()
+    getreps = GetRepsWindow(exercise, reps)
     reps = getreps.reps.get()
     exercise = getreps.exercise.get()
     # showprogress = getreps.showprogress.get()
@@ -193,8 +197,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-    sys.exit(0)
+    sys.exit(main())
 
 
 
