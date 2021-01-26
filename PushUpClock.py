@@ -38,9 +38,15 @@ TODO:         SHOW PROGRESS,     after exercise, give option to display exercise
 # SETTINGS 
 #
 EXERCISES = {"Push ups": 10,                             # Exercise will be randomly chosen from these options
-             "Clean and Press": 8,                       # Format: {exercise: reps}
+             "Clean and Press": 16,                      # Format: {exercise: reps}
              "Sit ups": 20,   
-             "Goblet Squats": 20}
+             "Goblet Squats": 20,
+             "Racked Squats": 20,
+             "Dumbbell Pullovers": 15,
+             "Wrist Curls": 15,
+             "Tricep Kickbacks": 15,
+             "Dips": 15,
+             "Reverse Curls": 15}
 HOLD_TIME = 15                                           # Number of seconds for exercise countdown. Switching to other programs, or exiting this program will be blocked during this time.
 HOLD_MESSAGE = f"Drop and give me =REPS= =EXERCISE=!"    # Message displayed during countdown to get you off your ass. =REPS= and =EXERCISE= will be replaced appropriately
 LOG_FILE = "log.csv"                                     # Name of log file. Must be in same directory as this program. Will be created if it doesnt exist.
