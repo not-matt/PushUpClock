@@ -24,10 +24,19 @@ You can adjust the script! Prompt yourself to do any exercise you want. Open "Pu
 
 
 ## Installation
-Download this repository (`git clone`, or use the green "download files" button)
+ 1. Download this repository
+![Screenshot 2021-12-11 172140](https://user-images.githubusercontent.com/32398028/145711250-f6661bd6-7345-423b-afef-9bd353e3f32d.png)
 
-Set this script to run as often as you want using your program scheduler. I have it set to run every hour while I'm logged on using Windows Task Scheduler
+ 2. Extract to `%UserProfile%`
+![Screenshot 2021-12-12 113612](https://user-images.githubusercontent.com/32398028/145711300-7dbdcf5c-524e-47b3-a90a-003cde2d4b9d.png)
 
+ 3. Open Task Scheduler `Start -> "Task Scheduler"`, and click `Import Task`. In the bar, go to `%UserProfile%\PushUpClock-master` and choose `PushUpClock.xml`. Feel free to make changes to the task. It's set to run every hour once you've logged on.
+![Screenshot 2021-12-12 115134](https://user-images.githubusercontent.com/32398028/145711351-fbbf884f-6382-4997-a06d-1ee2acec8a31.png)
+
+ 4. Run the task to test it was imported properly
+![Screenshot 2021-12-12 115255](https://user-images.githubusercontent.com/32398028/145711401-b3042e40-83dd-4cdd-b986-73f311221467.png)
+
+ 5. PushUpClock is now active! Stick at it! 
 
 ## Todo
 - SHOW PROGRESS,     after exercise, give option to display exercise data using matplotlib
