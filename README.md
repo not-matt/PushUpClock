@@ -24,6 +24,8 @@ You can adjust the script! Prompt yourself to do any exercise you want. Open "Pu
 
 
 ## Installation
+ 0. [Install Python](https://www.python.org/downloads/)
+
  1. Download this repository
 ![Screenshot 2021-12-11 172140](https://user-images.githubusercontent.com/32398028/145711250-f6661bd6-7345-423b-afef-9bd353e3f32d.png)
 
