@@ -23,7 +23,9 @@ Your efforts will be saved to a CSV file in the same directory as this script, s
 You can adjust the script! Prompt yourself to do any exercise you want. Open "PushUpClock.py" and edit the exercises, it's very straightforward.
 
 
-## Usage       
+## Installation
+Download this repository (`git clone`, or use the green "download files" button)
+
 Set this script to run as often as you want using your program scheduler. I have it set to run every hour while I'm logged on using Windows Task Scheduler
 
 
