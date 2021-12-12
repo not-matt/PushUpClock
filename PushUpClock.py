@@ -38,19 +38,16 @@ TODO:         SHOW PROGRESS,     after exercise, give option to display exercise
 # SETTINGS 
 #
 EXERCISES = {"Push ups": 10,                             # Exercise will be randomly chosen from these options
-             "Clean and Press": 16,                      # Format: {exercise: reps}
+             "Clean and Press": 15,                      # Format: {exercise: reps}
              "Sit ups": 20,   
              "Goblet Squats": 20,
-             "Racked Squats": 20,
-             "Dumbbell Pullovers": 15,
-             "Wrist Curls": 15,
-             "Tricep Kickbacks": 15,
-             "Dips": 15,
-             "Reverse Curls": 15}
+             "Diamond push up": 8,
+             "Racked Squats (squat with cleaned dumbbell)": 20,
+             "Dips (dip from chair)": 10}
 HOLD_TIME = 15                                           # Number of seconds for exercise countdown. Switching to other programs, or exiting this program will be blocked during this time.
-HOLD_MESSAGE = f"Drop and give me =REPS= =EXERCISE=!"    # Message displayed during countdown to get you off your ass. =REPS= and =EXERCISE= will be replaced appropriately
+HOLD_MESSAGE = f"Let's move!\n=REPS= =EXERCISE="    # Message displayed during countdown to get you off your ass. =REPS= and =EXERCISE= will be replaced appropriately
 LOG_FILE = "log.csv"                                     # Name of log file. Must be in same directory as this program. Will be created if it doesnt exist.
-ACTIVE_HOURS = ("09:00", "21:00")                        # Active hours (format "HOUR:MINUTE"). The program will only run between these hours. 
+ACTIVE_HOURS = ("09:00", "20:00")                        # Active hours (format "HOUR:MINUTE"). The program will only run between these hours. 
 #
 ###########################
 
